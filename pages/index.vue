@@ -3,7 +3,11 @@
     <div class="col-span-3">
       <Navbar />
     </div>
-    <div class="col-span-9"></div>
+    <div class="col-span-9">
+      <div>
+        <Header />
+      </div>
+    </div>
   </section>
 </template>
 
