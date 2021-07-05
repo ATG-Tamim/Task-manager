@@ -6,6 +6,7 @@
     <div class="col-span-9">
       <div>
         <Header />
+        <Cards />
       </div>
     </div>
   </section>
