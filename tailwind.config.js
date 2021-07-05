@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  variants: {},
+  variants: {
+    margin: ['last', 'first'],
+  },
   plugins: [],
 }
