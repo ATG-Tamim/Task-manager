@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center mr-10 cursor-pointer">
+    <div class="flex items-center cursor-pointer">
       <div class="rounded-full max-w-max p-3 border border-blue-700 mr-4">
         <img class="w-7" src="~/static/icons/bell.svg" alt />
       </div>

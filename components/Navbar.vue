@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-lg min-w-max w-10/12 flex flex-col items-center h-screen">
+  <div class="bg-white shadow-lg min-w-max w-full flex flex-col items-center h-screen">
     <div class="py-5 border-b-2 w-full flex items-center flex-col cursor-pointer">
       <Logo />
     </div>
