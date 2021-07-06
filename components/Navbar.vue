@@ -4,7 +4,7 @@
       <Logo />
     </div>
     <!-- Nav-links -->
-    <div class="flex flex-col h-full w-full items-center justify-between">
+    <div class="flex flex-col w-full items-center justify-between flex-1">
       <div class="flex flex-col w-full mt-2">
         <div
           class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black"

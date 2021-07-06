@@ -3,7 +3,7 @@
     <div
       v-for="i in 4"
       :key="i"
-      class="bg-white border border-gray-300 relative col-span-2 p-4 rounded-md"
+      class="bg-white border border-gray-300 h-20 sm:h-auto relative col-span-8 sm:col-span-4 lg:col-span-2 p-4 rounded-md"
     >
       <div class="w-5 absolute right-3 top-3">
         <img src="~/static/icons/work.svg" alt="work" />
