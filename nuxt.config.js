@@ -7,6 +7,7 @@ export default {
 
   server: {
     host: '172.30.11.33',
+    port: '8000',
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -42,10 +43,13 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    'nuxt-material-design-icons',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseUrl: 'http://172.30.11.33:3000/',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
