@@ -1,10 +1,8 @@
 <template>
   <section class="z-0 bg-gray-100 grid grid-cols-12 h-screen overflow-x-hidden">
-    <transition name="slide">
-      <div v-if="headerShow" class="xl:col-span-2 fixed z-50">
-        <Navbar />
-      </div>
-    </transition>
+    <div class="xl:col-span-2 fixed z-50">
+      <Navbar />
+    </div>
 
     <div class="xl:col-span-10 col-span-12 xl:col-start-3 mx-5 flex flex-1 flex-col">
       <!-- Header -->
@@ -146,7 +144,6 @@ export default {
     return {
       isShow: false,
       showTxt: 'More',
-      headerShow: true,
       isLoad: false,
       data: [],
     }
@@ -202,17 +199,6 @@ body {
 
 .min-width {
   min-width: 280px;
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.5s;
-  transform: translateX(0);
-}
-.slide-enter,
-.slide-leave-active {
-  opacity: 0;
-  transform: translateX(-300px);
 }
 
 .max-height {

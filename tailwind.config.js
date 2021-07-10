@@ -3,6 +3,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      translateY: {
+        13: 1,
+      },
+
       maxHeight: {
         13: '1000rem !important',
       },
