@@ -5,51 +5,25 @@
         <Navbar />
       </div>
     </transition>
-    <div
-      @click="headerShow = !headerShow"
-      class="bg-blue-500 fixed xl:hidden rounded-full w-16 h-16 flex items-center justify-center cursor-pointer bottom-5 right-5 z-50 opacity-60"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="36
-      " viewBox="0 0 87 55">
-        <g id="Group_4" data-name="Group 4" fill="white" transform="translate(-174 -453)">
-          <rect
-            id="Rectangle_5"
-            data-name="Rectangle 5"
-            width="87"
-            height="12"
-            rx="6"
-            transform="translate(174 453)"
-          />
-          <rect
-            id="Rectangle_6"
-            data-name="Rectangle 6"
-            width="87"
-            height="12"
-            rx="6"
-            transform="translate(174 475)"
-          />
-          <rect
-            id="Rectangle_7"
-            data-name="Rectangle 7"
-            width="43"
-            height="11"
-            rx="5.5"
-            transform="translate(218 497)"
-          />
-        </g>
-      </svg>
-    </div>
+
     <div class="xl:col-span-10 col-span-12 xl:col-start-3 mx-5 flex flex-1 flex-col">
+      <!-- Header -->
       <div>
         <Header />
-        <div :class="isShow && 'h-auto'" class="overflow-y-hidden h-28 sm:h-auto flex flex-col">
-          <Cards />
-        </div>
+        <transition name="slideUp">
+          <div
+            :class="isShow && 'max-height'"
+            class="max-height-20 overflow-hidden sm:overflow-visible sm:h-auto sm:max-h-13 flex flex-col transition-all duration-700 ease"
+          >
+            <Cards />
+          </div>
+        </transition>
         <div
           @click="show"
           class="text-center mt-4 text-sm font-bold text-blue-600 cursor-pointer sm:hidden"
         >{{showTxt}}</div>
       </div>
+      <!-- Section -->
       <div class="mt-3 flex flex-col flex-1">
         <div class="bg-white mt-5 border border-gray-300 rounded-md mb-5 flex flex-col flex-1">
           <div class="w-full border-b border-gray-300 py-3 flex items-center px-5">
@@ -58,47 +32,42 @@
               class="border border-blue-500 rounded-md px-3 py-2 w-max text-base font-bold text-blue-500 cursor-pointer select-none"
             >Add New Tasks</div>
           </div>
+          <!-- Kanbans -->
           <div class="flex flex-row p-2 overflow-hidden scroll-bar overflow-x-auto flex-1">
+            <!-- Kanban skeleton loader -->
             <div
+              v-for="i in 4"
+              :key="i"
               class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72 mr-2"
+              :class="isLoad && 'hidden'"
             >
-              <div class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0">On Hold</div>
+              <!-- Kanban Header -->
+              <div
+                class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0"
+                :class="!isLoad && 'bg-gray-300 rounded  w-1/2 h-5 animate-wiggle'"
+              ></div>
+              <!-- Kanban Cards -->
               <div class="relative top-0 bottom-0 rounded-md flex-1 overflow-y-scroll scroll-bar">
                 <div class="absolute overflow-auto scroll-bar rounded-md w-full">
+                  <!-- Skeleton loader -->
                   <div
-                    v-for="i in 6"
+                    v-for="i in 3"
                     :key="i"
-                    class="w-full bg-white rounded-md p-3 flex justify-between my-2 first:mt-0 last:mb-0"
+                    class="w-full bg-gray-100 rounded-md p-3 flex justify-between my-2"
                   >
                     <div>
-                      <div class="text-sm font-bold ml-1">Design homepage</div>
-                      <div class="flex row mt-2">
+                      <div class="bg-gray-300 rounded w-36 h-5 animate-wiggle ml-1"></div>
+                      <div class="flex mt-2">
                         <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
+                          v-for="i in 3"
+                          :key="i"
+                          class="bg-gray-300 rounded-full w-7 h-7 animate-wiggle mr-1 flex items-center justify-center"
+                        ></div>
                       </div>
                     </div>
                     <div class="flex flex-col items-end">
-                      <div class="w-5 cursor-pointer">
-                        <img src="~/static/icons/more.svg" alt />
-                      </div>
-                      <div class="flex items-center mt-3">
-                        <div class="flex items-center mr-3">
-                          <div>
-                            <img class="w-4" src="~/static/icons/schedual.svg" alt />
-                          </div>
-                          <div class="text-sm text-gray-500">00:00:00 h</div>
-                        </div>
-                        <div>
-                          <img src="~/static/icons/low.svg" alt />
-                        </div>
-                      </div>
+                      <div class="bg-gray-300 rounded-full w-7 h-7 animate-wiggle"></div>
+                      <div class="flex items-center mt-3"></div>
                     </div>
                   </div>
                 </div>
@@ -112,150 +81,41 @@
                 <div>Add new task</div>
               </div>
             </div>
+            <!-- Kanban Cards Data -->
             <div
+              v-for="(kanban, index) in data"
+              :key="index"
               class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72 mr-2"
             >
-              <div class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0">On Hold</div>
-              <div class="relative top-0 bottom-0 rounded-md flex-1 overflow-y-scroll scroll-bar">
-                <div class="absolute overflow-auto scroll-bar rounded-md w-full">
-                  <div
-                    v-for="i in 2"
-                    :key="i"
-                    class="w-full bg-white rounded-md p-3 flex justify-between my-2 first:mt-0 last:mb-0"
-                  >
-                    <div>
-                      <div class="text-sm font-bold ml-1">Design homepage</div>
-                      <div class="flex row mt-2">
-                        <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                      <div class="w-5 cursor-pointer">
-                        <img src="~/static/icons/more.svg" alt />
-                      </div>
-                      <div class="flex items-center mt-3">
-                        <div class="flex items-center mr-3">
-                          <div>
-                            <img class="w-4" src="~/static/icons/schedual.svg" alt />
-                          </div>
-                          <div class="text-sm text-gray-500">00:00:00 h</div>
-                        </div>
-                        <div>
-                          <img src="~/static/icons/low.svg" alt />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <!-- Kanban Header -->
+              <div class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0">{{kanban.title}}</div>
+              <!-- Kanban Cards -->
               <div
-                class="flex items-center justify-center text-sm font-semibold text-blue-600 w-full py-2 cursor-pointer rounded-md mt-2 transition-all duration-150 ease hover:bg-gray-300 sticky bottom-0"
-              >
-                <div class="mr-1">
-                  <img class="w-4" src="~/static/icons/add.svg" alt="add" />
-                </div>
-                <div>Add new task</div>
-              </div>
-            </div>
-            <div
-              class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72 mr-2"
-            >
-              <div class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0">In Progress</div>
-              <div class="relative top-0 bottom-0 rounded-md flex-1 scroll-bar overflow-y-scroll">
-                <div class="absolute overflow-auto scroll-bar rounded-md w-full">
-                  <div
-                    v-for="i in 2"
-                    :key="i"
-                    class="w-full bg-white rounded-md p-3 flex justify-between my-2 first:mt-0 last:mb-0"
-                  >
-                    <div>
-                      <div class="text-sm font-bold ml-1">Design homepage</div>
-                      <div class="flex row mt-2">
-                        <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                      <div class="w-5 cursor-pointer">
-                        <img src="~/static/icons/more.svg" alt />
-                      </div>
-                      <div class="flex items-center mt-3">
-                        <div class="flex items-center mr-3">
-                          <div>
-                            <img class="w-4" src="~/static/icons/schedual.svg" alt />
-                          </div>
-                          <div class="text-sm text-gray-500">00:00:00 h</div>
-                        </div>
-                        <div>
-                          <img src="~/static/icons/low.svg" alt />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex items-center justify-center text-sm font-semibold text-blue-600 w-full py-2 cursor-pointer rounded-md mt-2 transition-all duration-150 ease hover:bg-gray-300 sticky bottom-0"
-              >
-                <div class="mr-1">
-                  <img class="w-4" src="~/static/icons/add.svg" alt="add" />
-                </div>
-                <div>Add new task</div>
-              </div>
-            </div>
-            <div
-              class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72"
-            >
-              <div class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0">In Progress</div>
-              <div
-                class="relative top-0 bottom-0 rounded-md w-full flex-1 scroll-bar overflow-y-scroll"
+                class="relative top-0 bottom-0 rounded-md flex-1 overflow-y-scroll scroll-bar cursor-pointer"
               >
                 <div class="absolute overflow-auto scroll-bar rounded-md w-full">
                   <div
-                    v-for="i in 2"
-                    :key="i"
-                    class="w-full bg-white rounded-md p-3 flex justify-between my-2 first:mt-0 last:mb-0"
+                    v-for="(card, index) in kanban.card"
+                    :key="index"
+                    class="w-full bg-white rounded-md p-3 flex justify-between my-2"
                   >
                     <div>
-                      <div class="text-sm font-bold ml-1">Design homepage</div>
-                      <div class="flex row mt-2">
+                      <div class="w-32 h-5 ml-1 text-sm font-bold">{{card.name}}</div>
+                      <div class="flex mt-2">
                         <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white mr-1 text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
-                        <div
-                          class="w-6 h-6 text-white text-xs rounded-full bg-green-400 flex items-center justify-center"
-                        >BD</div>
+                          v-for="(pic, index) in card.avatar"
+                          :key="index"
+                          class="rounded-full w-7 h-7 mr-1 flex items-center justify-center"
+                        >
+                          <img class="rounded-full" :src="pic.pic" alt />
+                        </div>
                       </div>
                     </div>
                     <div class="flex flex-col items-end">
-                      <div class="w-5 cursor-pointer">
-                        <img src="~/static/icons/more.svg" alt />
-                      </div>
-                      <div class="flex items-center mt-3">
-                        <div class="flex items-center mr-3">
-                          <div>
-                            <img class="w-4" src="~/static/icons/schedual.svg" alt />
-                          </div>
-                          <div class="text-sm text-gray-500">00:00:00 h</div>
-                        </div>
+                      <div class="w-7 h-7 material-icons">more_horiz</div>
+                      <div class="flex items-center mt-3 text-xs w-28">
+                        <div class="material-icons icon-20">schedule</div>
+                        <div class="mx-1">{{card.time}}</div>
                         <div>
                           <img src="~/static/icons/low.svg" alt />
                         </div>
@@ -287,7 +147,13 @@ export default {
       isShow: false,
       showTxt: 'More',
       headerShow: true,
+      isLoad: false,
+      data: [],
     }
+  },
+
+  mounted() {
+    this.fetchData()
   },
 
   methods: {
@@ -298,6 +164,20 @@ export default {
       } else {
         this.showTxt = 'More'
       }
+    },
+    fetchData() {
+      this.$axios
+        .$get('/kanbans')
+        .then((res) => {
+          let timer = setTimeout(() => {
+            this.isLoad = true
+          }, 3000)
+          this.data = res
+        })
+        .catch((error) => {
+          this.isLoad = false
+          alert(error)
+        })
     },
   },
 }
@@ -333,6 +213,28 @@ body {
 .slide-leave-active {
   opacity: 0;
   transform: translateX(-300px);
+}
+
+.max-height {
+  max-height: 500px !important;
+}
+.max-height-20 {
+  max-height: 120px;
+}
+
+.slideUp-enter-active,
+.slideUp-leave-active {
+  transition: all 1s linear;
+  max-height: 500px;
+}
+.slideUp-enter,
+.slideUp-leave-active {
+  opacity: 0;
+  max-height: 120px;
+}
+
+.icon-20 {
+  font-size: 20px !important;
 }
 </style>
 

@@ -12,26 +12,27 @@
         <div class="sm:text-xl font-semibold">Design System</div>
         <div class="text-sm ml-4 text-purple-600 font-bold cursor-pointer">Edit</div>
       </div>
-      <div class="flex md:items-center md:flex-row flex-col mt-3 text-gray-500">
-        <div class="text-xs md:text-sm font-semibold flex items-center mr-5">
-          <div class="w-5 mr-1">
-            <img src="~/static/icons/flash.svg" alt="flash" />
-          </div>
-          <div>Active Project</div>
-        </div>
-        <div class="text-xs md:text-sm font-semibold flex items-center mr-5">
-          <div class="w-5 mr-1">
-            <img src="~/static/icons/user.svg" alt="user" />
-          </div>
-          <div>4 assignees</div>
-        </div>
-        <div class="text-xs md:text-sm font-semibold flex items-center mr-5">
-          <div class="w-5 mr-1">
-            <img src="~/static/icons/budget.svg" alt="user" />
+      <!-- Skeleton Loader -->
+      <div v-if="isLoad" class="w-full md:flex flex-row mt-3">
+        <div
+          v-for="i in 3"
+          :key="i"
+          class="bg-gray-300 rounded w-24 animate-wiggle py-2 mr-5 mt-2 md:mt-0"
+        ></div>
+      </div>
+      <!-- Data -->
+      <div v-if="!isLoad" class="flex md:items-center md:flex-row flex-col mt-3 text-gray-500">
+        <div
+          v-for="(data, index) in datas"
+          :key="index"
+          class="text-xs md:text-sm font-semibold flex items-center mr-5"
+        >
+          <div class="w-5 mr-1 flex">
+            <div class="material-icons icon-20">{{data.icon}}</div>
           </div>
           <div class="flex items-center">
-            <div class="mr-2">Budget:</div>
-            <div class="font-extrabold">32 hours</div>
+            <div class="mr-2">{{data.name}}</div>
+            <div class="font-extrabold">{{data.time}}</div>
           </div>
         </div>
       </div>
@@ -54,3 +55,35 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isLoad: true,
+      datas: [],
+    }
+  },
+
+  mounted() {
+    this.fetchData()
+  },
+
+  methods: {
+    fetchData() {
+      this.$axios
+        .$get('/header')
+        .then((res) => {
+          let timer = setTimeout(() => {
+            this.isLoad = false
+          }, 3000)
+          this.datas = res
+        })
+        .catch((error) => {
+          this.isLoad = true
+          alert(error)
+        })
+    },
+  },
+}
+</script>

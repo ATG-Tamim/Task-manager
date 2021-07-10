@@ -1,76 +1,93 @@
 <template>
-  <div class="bg-white shadow-lg min-w-max w-full flex flex-col items-center h-screen">
-    <div class="py-5 border-b-2 w-full flex items-center flex-col cursor-pointer">
-      <Logo />
+  <section>
+    <div
+      @click="show = !show"
+      class="w-10 h-10 absolute -right-7 top-24 bg-blue-600 rounded-full cursor-pointer z-40 xl:hidden"
+    >
+      <div class="material-icons mt-2 ml-2 text-white w-max">arrow_forward_ios</div>
     </div>
-    <!-- Nav-links -->
-    <div class="flex flex-col w-full items-center justify-between flex-1">
-      <div class="flex flex-col w-full mt-2">
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/view.svg" alt="dashboard" />
-          <div class="text-xs font-medium">Dashboard</div>
+    <div
+      :class="show && 'hidden'"
+      class="bg-white shadow-lg min-w-max xl:flex flex-col items-center h-screen z-30"
+    >
+      <div class="py-5 border-b-2 w-full flex items-center flex-col cursor-pointer">
+        <Logo />
+      </div>
+      <!-- Nav-links -->
+      <div class="flex flex-col items-center justify-between flex-1 relative w-full">
+        <div class="flex flex-col w-full mt-2">
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/view.svg" alt="dashboard" />
+            <div class="text-xs font-medium">Dashboard</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/av-timer.svg" alt="task" />
+            <div class="text-xs font-medium">Real-Time Tracking</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/media.svg" alt="task" />
+            <div class="text-xs font-medium">Screenshots</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/group.svg" alt="task" />
+            <div class="text-xs font-medium">Employees</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/work.svg" alt="task" />
+            <div class="text-xs font-medium">Project Tracking</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/toll.svg" alt="task" />
+            <div class="text-xs font-medium">Teams</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/event-note.svg" alt="task" />
+            <div class="text-xs font-medium">Time and Attendance</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/dvr.svg" alt="task" />
+            <div class="text-xs font-medium">Apps and Websites</div>
+          </div>
+          <div
+            class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
+          >
+            <img class="w-5 mr-3" src="~/static/icons/settings.svg" alt="task" />
+            <div class="text-xs font-medium">Settings</div>
+          </div>
         </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/av-timer.svg" alt="task" />
-          <div class="text-xs font-medium">Real-Time Tracking</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/media.svg" alt="task" />
-          <div class="text-xs font-medium">Screenshots</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/group.svg" alt="task" />
-          <div class="text-xs font-medium">Employees</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/work.svg" alt="task" />
-          <div class="text-xs font-medium">Project Tracking</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/toll.svg" alt="task" />
-          <div class="text-xs font-medium">Teams</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/event-note.svg" alt="task" />
-          <div class="text-xs font-medium">Time and Attendance</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/dvr.svg" alt="task" />
-          <div class="text-xs font-medium">Apps and Websites</div>
-        </div>
-        <div
-          class="w-full flex flex-row items-center py-3 px-10 cursor-pointer text-gray-400 select-none hover:bg-gray-100 hover:text-black transition-all duration-150 ease"
-        >
-          <img class="w-5 mr-3" src="~/static/icons/settings.svg" alt="task" />
-          <div class="text-xs font-medium">Settings</div>
+        <div class="flex flex-col items-center mb-5 cursor-pointer">
+          <div class="w-12 h-12 rounded-full overflow-hidden">
+            <img src="~/static/images/avatar.jpg" alt />
+          </div>
+          <div class="text-base text-bold mt-1">Joe Geller</div>
         </div>
       </div>
-      <div class="flex flex-col items-center mb-5 cursor-pointer">
-        <div class="w-12 h-12 rounded-full overflow-hidden">
-          <img src="~/static/images/avatar.jpg" alt />
-        </div>
-        <div class="text-base text-bold mt-1">Joe Geller</div>
-      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      show: false,
+    }
+  },
+}
 </script>
