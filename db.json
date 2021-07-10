@@ -1,0 +1,162 @@
+{
+  "header" : [
+
+{
+        "name": "Active Project",
+        "icon": "flash_on"
+},{
+        "name": "4 assignees",
+        "icon": "person"
+},{
+
+        "name": "budget: ",
+        "time": "32 hours",
+        "icon": "account_balance_wallet"
+}
+
+  ],
+
+  "cards" : [
+    {
+        "name": "Total time on Project",
+        "performance": "03:39",
+        "sup": "h",
+        "icon": "work"
+    },
+    {
+
+        "name": "Earnings",
+        "performance": "2,050",
+        "usd": "$",
+        "icon": "account_balance"
+
+    },
+
+    {
+
+        "name": "Costs",
+        "performance": "1,600",
+        "usd": "$",
+        "icon": "account_balance_wallet"
+
+      },
+      {
+
+        "name": "Productivity",
+        "performance": "98.40",
+        "sup": "%",
+        "icon": "show_chart",
+        "up": "2.37%",
+        "upIcon": "arrow_drop_up"
+    }
+  ],
+
+  "kanbans": [
+    {
+      "title": "To Do",
+      "card": [
+        {
+          "name": "Design homepage",
+          "avatar": [
+            {"pic": "https://randomuser.me/api/portraits/men/97.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/women/2.jpg"}
+          ],
+          "time": "00:00:00 h"
+        },
+        {
+          "name": "change old app icon",
+          "avatar": [
+            {"pic": "https://randomuser.me/api/portraits/women/9.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/men/46.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/women/89.jpg"}
+          ],
+          "time": "00:00:00 h"
+        }
+      ]
+    },
+    {
+      "title": "On Hold",
+      "card": [
+        {
+          "name": "UI Styleguide",
+          "avatar": [
+            {"pic":"https://randomuser.me/api/portraits/women/91.jpg"}
+          ],
+          "time": "12:24:48 h"
+        },
+        {
+          "name": "Calender",
+          "avatar": [
+            {"pic": "https://randomuser.me/api/portraits/women/78.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/men/45.jpg"}
+          ],
+          "time": "21:3:54 h"
+        },
+        {
+          "name": "Interaction design",
+          "avatar": [
+            {"pic": "https://randomuser.me/api/portraits/women/98.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/men/23.jpg"}
+          ],
+          "time": "14:29:23 h"
+        }
+      ]
+    },
+    {
+      "title": "In Progress",
+      "card": [
+        {
+          "name": "Dashboard",
+          "avatar": [
+            {"pic":"https://randomuser.me/api/portraits/women/31.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/men/31.jpg"}
+          ],
+          "time": "16:29:48 h"
+        },
+        {
+          "name": "Testing",
+          "avatar": [
+            {"pic": "https://randomuser.me/api/portraits/women/41.jpg"}
+          ],
+          "time": "11:3:54 h"
+        },
+        {
+          "name": "Animation",
+          "avatar": [
+            {"pic":"https://randomuser.me/api/portraits/men/23.jpg"}
+          ],
+          "time": "18:29:23 h"
+        },
+        {
+          "name": "Eamil template",
+          "avatar": [
+            {"pic":"https://randomuser.me/api/portraits/men/11.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/women/11.jpg"}
+          ],
+          "time": "18:29:23 h"
+        }
+      ]
+    },
+    {
+      "title": "Done",
+      "card": [
+        {
+          "name": "Design System",
+          "avatar": [
+            {"pic":"https://randomuser.me/api/portraits/women/43.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/men/54.jpg"},
+            {"pic":"https://randomuser.me/api/portraits/men/76.jpg"}
+          ],
+          "time": "35:29:48 h"
+        },
+        {
+          "name": "User research",
+          "avatar": [
+            {"pic": "https://randomuser.me/api/portraits/women/91.jpg"}
+          ],
+          "time": "25:3:54 h"
+        }
+      ]
+    }
+  ]
+}
