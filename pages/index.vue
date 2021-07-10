@@ -36,8 +36,8 @@
           <div class="flex flex-row p-2 overflow-hidden scroll-bar overflow-x-auto flex-1">
             <!-- Kanban skeleton loader -->
             <div
-              v-for="i in 4"
-              :key="i"
+              v-for="(i, n) in 4"
+              :key="'a' + n"
               class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72 mr-2"
               :class="isLoad && 'hidden'"
             >
@@ -51,16 +51,16 @@
                 <div class="absolute overflow-auto scroll-bar rounded-md w-full">
                   <!-- Skeleton loader -->
                   <div
-                    v-for="i in 3"
-                    :key="i"
+                    v-for="(i, n) in 3"
+                    :key="'b' + n"
                     class="w-full bg-gray-100 rounded-md p-3 flex justify-between my-2"
                   >
                     <div>
                       <div class="bg-gray-300 rounded w-36 h-5 animate-wiggle ml-1"></div>
                       <div class="flex mt-2">
                         <div
-                          v-for="i in 3"
-                          :key="i"
+                          v-for="(i, n) in 3"
+                          :key="'c' + n"
                           class="bg-gray-300 rounded-full w-7 h-7 animate-wiggle mr-1 flex items-center justify-center"
                         ></div>
                       </div>

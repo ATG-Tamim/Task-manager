@@ -15,8 +15,8 @@
       <!-- Skeleton Loader -->
       <div v-if="isLoad" class="w-full md:flex flex-row mt-3">
         <div
-          v-for="i in 3"
-          :key="i"
+          v-for="(i, n) in 3"
+          :key="'e' + n"
           class="bg-gray-300 rounded w-24 animate-wiggle py-2 mr-5 mt-2 md:mt-0"
         ></div>
       </div>

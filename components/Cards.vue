@@ -2,8 +2,8 @@
   <div class="grid grid-cols-8 mt-8 gap-3">
     <!-- Skeleton Loader -->
     <div
-      v-for="i in 4"
-      :key="i"
+      v-for="(i, n) in 4"
+      :key="'d' + n"
       class="bg-gray-200 px-2 h-20 sm:h-auto relative col-span-8 sm:col-span-4 lg:col-span-2 p-4 rounded-md"
       :class="!isLoad && 'hidden'"
     >
