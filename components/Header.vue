@@ -13,15 +13,19 @@
         <div class="text-sm ml-4 text-purple-600 font-bold cursor-pointer">Edit</div>
       </div>
       <!-- Skeleton Loader -->
-      <div v-if="isLoad" class="w-full md:flex flex-row mt-3">
-        <div
+      <skeleton v-if="isLoad" class="w-full md:flex flex-row mt-3">
+        <skeleton
+          variant="text"
+          width="96"
+          heiht="16"
+          animation="wave"
           v-for="(i, n) in 3"
           :key="'e' + n"
-          class="bg-gray-300 rounded w-24 animate-wiggle py-2 mr-5 mt-2 md:mt-0"
-        ></div>
-      </div>
+          class="rounded mr-5 mt-2 md:mt-0"
+        />
+      </skeleton>
       <!-- Data -->
-      <div v-if="!isLoad" class="flex md:items-center md:flex-row flex-col mt-3 text-gray-500">
+      <div class="flex md:items-center md:flex-row flex-col mt-3 text-gray-500">
         <div
           v-for="(data, index) in datas"
           :key="index"
@@ -57,10 +61,12 @@
 </template>
 
 <script>
+import Skeleton from './Skeleton.vue'
 export default {
+  components: { Skeleton },
   data() {
     return {
-      isLoad: true,
+      isLoad: false,
       datas: [],
     }
   },
@@ -71,17 +77,20 @@ export default {
 
   methods: {
     fetchData() {
+      this.isLoad = true
       this.$axios
         .$get('/header')
         .then((res) => {
           let timer = setTimeout(() => {
             this.isLoad = false
+            this.datas = res
           }, 3000)
-          this.datas = res
         })
         .catch((error) => {
-          this.isLoad = true
-          alert(error)
+          let timer = setTimeout(() => {
+            this.isLoad = false
+            alert(error)
+          }, 3000)
         })
     },
   },

@@ -1,10 +1,22 @@
 <template>
   <section class="z-0 bg-gray-100 grid grid-cols-12 h-screen overflow-x-hidden">
-    <div class="xl:col-span-2 fixed z-50">
+    <div
+      @click="navShow = !navShow"
+      class="w-8 h-8 absolute top-4 left-1 cursor-pointer xl:hidden flex justify-center items-center z-50"
+    >
+      <div v-if="!navShow" class="material-icons" style="font-size: 30px !important">apps</div>
+      <div v-if="navShow" class="material-icons" style="font-size: 30px !important">cancel</div>
+    </div>
+    <div
+      @click="navShow = false"
+      :style="navShow && 'transform: translateX(0) !important; right: 0 ; left: 0; width: 100% !important; background: rgba(0,0,0, 0.4)'"
+      class="w-max xl:col-span-2 fixed z-40 transform -translate-x-56 xl:translate-x-0 transition-all duration-300 ease"
+    >
+      <div class="flex flex-col"></div>
       <Navbar />
     </div>
 
-    <div class="xl:col-span-10 col-span-12 xl:col-start-3 mx-5 flex flex-1 flex-col">
+    <div class="ml-10 xl:ml-5 xl:col-span-10 col-span-12 xl:col-start-3 mx-5 flex flex-1 flex-col">
       <!-- Header -->
       <div>
         <Header />
@@ -31,107 +43,8 @@
             >Add New Tasks</div>
           </div>
           <!-- Kanbans -->
-          <div class="flex flex-row p-2 overflow-hidden scroll-bar overflow-x-auto flex-1">
-            <!-- Kanban skeleton loader -->
-            <div
-              v-for="(i, n) in 4"
-              :key="'a' + n"
-              class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72 mr-2"
-              :class="isLoad && 'hidden'"
-            >
-              <!-- Kanban Header -->
-              <div
-                class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0"
-                :class="!isLoad && 'bg-gray-300 rounded  w-1/2 h-5 animate-wiggle'"
-              ></div>
-              <!-- Kanban Cards -->
-              <div class="relative top-0 bottom-0 rounded-md flex-1 overflow-y-scroll scroll-bar">
-                <div class="absolute overflow-auto scroll-bar rounded-md w-full">
-                  <!-- Skeleton loader -->
-                  <div
-                    v-for="(i, n) in 3"
-                    :key="'b' + n"
-                    class="w-full bg-gray-100 rounded-md p-3 flex justify-between my-2"
-                  >
-                    <div>
-                      <div class="bg-gray-300 rounded w-36 h-5 animate-wiggle ml-1"></div>
-                      <div class="flex mt-2">
-                        <div
-                          v-for="(i, n) in 3"
-                          :key="'c' + n"
-                          class="bg-gray-300 rounded-full w-7 h-7 animate-wiggle mr-1 flex items-center justify-center"
-                        ></div>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                      <div class="bg-gray-300 rounded-full w-7 h-7 animate-wiggle"></div>
-                      <div class="flex items-center mt-3"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex items-center justify-center text-sm font-semibold text-blue-600 w-full py-2 cursor-pointer rounded-md mt-2 transition-all duration-150 ease hover:bg-gray-300 sticky bottom-0"
-              >
-                <div class="mr-1">
-                  <img class="w-4" src="~/static/icons/add.svg" alt="add" />
-                </div>
-                <div>Add new task</div>
-              </div>
-            </div>
-            <!-- Kanban Cards Data -->
-            <div
-              v-for="(kanban, index) in data"
-              :key="index"
-              class="col-span-2 bg-gray-200 flex flex-col p-2 rounded-md min-width min-height w-72 mr-2"
-            >
-              <!-- Kanban Header -->
-              <div class="text-sm font-bold text-gray-500 ml-2 my-2 sticky top-0">{{kanban.title}}</div>
-              <!-- Kanban Cards -->
-              <div
-                class="relative top-0 bottom-0 rounded-md flex-1 overflow-y-scroll scroll-bar cursor-pointer"
-              >
-                <div class="absolute overflow-auto scroll-bar rounded-md w-full">
-                  <div
-                    v-for="(card, index) in kanban.card"
-                    :key="index"
-                    class="w-full bg-white rounded-md p-3 flex justify-between my-2"
-                  >
-                    <div>
-                      <div class="w-32 h-5 ml-1 text-sm font-bold">{{card.name}}</div>
-                      <div class="flex mt-2">
-                        <div
-                          v-for="(pic, index) in card.avatar"
-                          :key="index"
-                          class="rounded-full w-7 h-7 mr-1 flex items-center justify-center"
-                        >
-                          <img class="rounded-full" :src="pic.pic" alt />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                      <div class="w-7 h-7 material-icons">more_horiz</div>
-                      <div class="flex items-center mt-3 text-xs w-28">
-                        <div class="material-icons icon-20">schedule</div>
-                        <div class="mx-1">{{card.time}}</div>
-                        <div>
-                          <img src="~/static/icons/low.svg" alt />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex items-center justify-center text-sm font-semibold text-blue-600 w-full py-2 cursor-pointer rounded-md mt-2 transition-all duration-150 ease hover:bg-gray-300 sticky bottom-0"
-              >
-                <div class="mr-1">
-                  <img class="w-4" src="~/static/icons/add.svg" alt="add" />
-                </div>
-                <div>Add new task</div>
-              </div>
-            </div>
-          </div>
+          <Skeleton variant="text" />
+          <Boards />
         </div>
       </div>
     </div>
@@ -139,18 +52,15 @@
 </template>
 
 <script>
+import Skeleton from '../components/Skeleton.vue'
 export default {
+  components: { Skeleton },
   data() {
     return {
       isShow: false,
       showTxt: 'More',
-      isLoad: false,
-      data: [],
+      navShow: false,
     }
-  },
-
-  mounted() {
-    this.fetchData()
   },
 
   methods: {
@@ -161,20 +71,6 @@ export default {
       } else {
         this.showTxt = 'More'
       }
-    },
-    fetchData() {
-      this.$axios
-        .$get('/kanbans')
-        .then((res) => {
-          let timer = setTimeout(() => {
-            this.isLoad = true
-          }, 3000)
-          this.data = res
-        })
-        .catch((error) => {
-          this.isLoad = false
-          alert(error)
-        })
     },
   },
 }

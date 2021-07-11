@@ -1,15 +1,6 @@
 <template>
-  <section
-    :style="show && 'transform: translateX(0) !important'"
-    class="transform -translate-x-56 xl:translate-x-0 transition-all duration-300 ease"
-  >
-    <div
-      @click="show = !show"
-      class="w-10 h-10 absolute -right-8 top-24 bg-blue-600 rounded-full cursor-pointer z-40 xl:hidden"
-    >
-      <div class="material-icons mt-2 ml-2 text-white w-max">chevron_right</div>
-    </div>
-    <div class="bg-white shadow-lg min-w-max xl:flex flex-col items-center h-screen z-30">
+  <section>
+    <div class="bg-white shadow-lg min-w-max w-56 flex flex-col items-center h-screen z-30">
       <div class="py-5 border-b-2 w-full flex items-center flex-col cursor-pointer">
         <Logo />
       </div>
@@ -82,12 +73,4 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      show: false,
-    }
-  },
-}
-</script>
+

@@ -1,18 +1,25 @@
 <template>
   <div class="grid grid-cols-8 mt-8 gap-3">
     <!-- Skeleton Loader -->
-    <div
-      v-for="(i, n) in 4"
-      :key="'d' + n"
-      class="bg-gray-200 px-2 h-20 sm:h-auto relative col-span-8 sm:col-span-4 lg:col-span-2 p-4 rounded-md"
-      :class="!isLoad && 'hidden'"
-    >
-      <div class="absolute right-3 top-3 bg-gray-300 rounded-full px-2 w-7 h-7 animate-wiggle"></div>
-      <div>
-        <div class="bg-gray-300 rounded w-4/5 h-4 mb-1 animate-wiggle"></div>
-        <div class="bg-gray-300 rounded w-1/2 h-4 animate-wiggle"></div>
-      </div>
-    </div>
+    <skeleton v-if="isLoad" class="grid grid-cols-8 mt-8 gap-3 col-span-8">
+      <Skeleton
+        v-for="(i, n) in 4"
+        :key="'d' + n"
+        class="bg-gray-200 px-2 h-20 sm:h-auto relative col-span-8 sm:col-span-4 lg:col-span-2 p-4 rounded-md"
+      >
+        <skeleton
+          variant="circle"
+          width="28"
+          height="28"
+          animation="wave"
+          class="absolute right-3 top-3 rounded-full px-2"
+        />
+        <skeleton>
+          <skeleton animation="wave" class="rounded w-4/5 h-4 mb-1" />
+          <skeleton animation="wave" class="rounded w-1/2 h-4" />
+        </skeleton>
+      </Skeleton>
+    </skeleton>
     <!-- Data Cards -->
 
     <div
@@ -41,11 +48,13 @@
   </div>
 </template>
 <script>
+import Skeleton from './Skeleton.vue'
 export default {
+  components: { Skeleton },
   data() {
     return {
       show: true,
-      isLoad: true,
+      isLoad: false,
       datas: [],
     }
   },
@@ -56,17 +65,20 @@ export default {
 
   methods: {
     fetchData() {
+      this.isLoad = true
       this.$axios
         .$get('/cards')
         .then((res) => {
           let timer = setTimeout(() => {
             this.isLoad = false
+            this.datas = res
           }, 3000)
-          this.datas = res
         })
         .catch((error) => {
-          this.isLoad = true
-          alert(error)
+          let timer = setTimeout(() => {
+            this.isLoad = false
+            alert(error)
+          }, 3000)
         })
     },
   },
