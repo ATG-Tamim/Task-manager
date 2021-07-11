@@ -13,7 +13,7 @@
         <div class="text-sm ml-4 text-purple-600 font-bold cursor-pointer">Edit</div>
       </div>
       <!-- Skeleton Loader -->
-      <skeleton v-if="isLoad" class="w-full md:flex flex-row mt-3">
+      <skeleton v-if="isLoad" class="w-full md:flex flex-row mt-3 bg-gray-200 p-2 rounded">
         <skeleton
           variant="text"
           width="96"
